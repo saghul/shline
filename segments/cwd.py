@@ -1,16 +1,12 @@
 import os
 
 def get_short_path(cwd):
-    home = os.getenv('HOME')
+    home = os.path.expanduser('~')
+    if cwd.startswith(home):
+        cwd = '~' + cwd[len(home):]
     names = cwd.split(os.sep)
-    if names[0] == '': names = names[1:]
-    path = ''
-    for i in range(len(names)):
-        path += os.sep + names[i]
-        if os.path.samefile(path, home):
-            return ['~'] + names[i+1:]
     if not names[0]:
-        return ['/']
+        names[0] = '/'
     return names
 
 def add_cwd_segment():
