@@ -51,7 +51,6 @@ There are a few optional arguments which can be seen by running `powerline-shell
 ```
   --cwd-max-depth CWD_MAX_DEPTH
                         Maximum number of directories to show in path
-  --colorize-hostname   Colorize the hostname based on a hash of itself.
   --mode {patched,compatible,flat}
                         The characters used to make separators between
                         segments
