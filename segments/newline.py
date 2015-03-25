@@ -1,5 +1,5 @@
 def add_newline_segment():
-    powerline.append('\\n', 0, 0)
+    powerline.append('\\n', None, None)
 
 add_newline_segment()
 
