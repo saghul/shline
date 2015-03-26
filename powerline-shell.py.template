@@ -19,7 +19,7 @@ class Powerline:
         'patched': {
             'branch': u'\uE0A0',
             'lock': u'\uE0A2',
-            'network': u'\uE0A2',
+            'network': u'SSH',
             'separator': u'\uE0B0',
         },
         'flat': {
