@@ -30,22 +30,16 @@ class Shline:
         },
     }
 
-    color_templates = {
-        'bash': '\\[\\e%s\\]',
-        'zsh': '%%{%s%%}',
-        'bare': '%s',
-    }
+    color_template = '\\[\\e%s\\]'
 
     def __init__(self, args, cwd):
         self.args = args
         self.cwd = cwd
-        mode, shell = args.mode, args.shell
-        self.color_template = self.color_templates[shell]
         self.reset = self.color_template % '[0m'
-        self.branch = Shline.symbols[mode]['branch']
-        self.lock = Shline.symbols[mode]['lock']
-        self.network = Shline.symbols[mode]['network']
-        self.separator = Shline.symbols[mode]['separator']
+        self.branch = Shline.symbols[args.mode]['branch']
+        self.lock = Shline.symbols[args.mode]['lock']
+        self.network = Shline.symbols[args.mode]['network']
+        self.separator = Shline.symbols[args.mode]['separator']
         self.segments = []
 
     def color(self, prefix, code):
@@ -118,8 +112,6 @@ if __name__ == "__main__":
     arg_parser.add_argument('--mode', action='store', default='patched',
             help='The characters used to make separators between segments',
             choices=['patched', 'compatible', 'flat'])
-    arg_parser.add_argument('--shell', action='store', default='bash',
-            help='Set this to your shell type', choices=['bash', 'zsh', 'bare'])
     arg_parser.add_argument('--prev-error', action='store', type=int,
             help='Error code returned by the last command')
     arg_parser.add_argument('--jobs', action='store', type=int,
