@@ -16,6 +16,9 @@ SEGMENTS = [
 # Show the machine's hostname. Mostly used when ssh-ing into other machines
     'hostname',
 
+# Show 'username@hostname'
+#   'user_host',
+
 # Show a padlock when ssh-ing from another machine
     'ssh',
 
