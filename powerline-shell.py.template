@@ -60,27 +60,31 @@ class Powerline:
     def bgcolor(self, code):
         return self.color('48', code)
 
-    def append(self, content, fg, bg, separator=None, separator_fg=None):
-        self.segments.append((content, fg, bg, 
-            separator if separator is not None else self.separator,
-            separator_fg if separator_fg is not None else bg))
+    def append(self, content, fg, bg, separator=None):
+        self.segments.append((content, fg, bg, separator or self.separator))
 
     def draw(self):
-        return (''.join(self.draw_segment(i) for i in range(len(self.segments)))
-                + self.reset).encode('utf-8') + ' '
+        segments = ''.join(self.draw_segment(i) for i in range(len(self.segments)))
+        return (self.reset + segments + self.reset).encode('utf-8') + ' '
 
     def draw_segment(self, idx):
         segment = self.segments[idx]
         next_segment = self.segments[idx + 1] if idx < len(self.segments)-1 else None
 
+        segment_content, segment_fg, segment_bg, segment_separator = segment
+        if next_segment is not None:
+            next_segment_content, next_segment_fg, next_segment_bg, next_segment_separator = next_segment
+        else:
+            next_segment_content = next_segment_fg = next_segment_bg = next_segment_separator = None
+
         return ''.join((
-            self.reset if segment[1] is None or segment[2] is None else '',
-            self.fgcolor(segment[1]),
-            self.bgcolor(segment[2]),
-            segment[0],
-            self.bgcolor(next_segment[2]) if next_segment and next_segment[2] else self.reset,
-            self.fgcolor(segment[4]),
-            segment[3]))
+            self.fgcolor(segment_fg),
+            self.bgcolor(segment_bg),
+            segment_content,
+            self.bgcolor(next_segment_bg) if next_segment_bg is not None else self.reset,
+            self.fgcolor(segment_bg),
+            segment_separator if segment_separator != 'skip' else '',
+        ))
 
 def get_valid_cwd():
     """ We check if the current working directory is valid or not. Typically
