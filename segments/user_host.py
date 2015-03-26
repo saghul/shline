@@ -2,10 +2,10 @@ def add_user_host_segment():
     import os
     import socket
 
-    if powerline.args.shell == 'bash':
+    if shline.args.shell == 'bash':
         user = '\\u'
         host = '\\h'
-    elif powerline.args.shell == 'zsh':
+    elif shline.args.shell == 'zsh':
         user = '%n'
         host = '%m'
     else:
@@ -17,7 +17,7 @@ def add_user_host_segment():
     else:
         bgcolor = Color.USERNAME_BG
 
-    powerline.append(' %s@%s ' % (user, host), Color.USERNAME_FG, bgcolor)
+    shline.append(' %s@%s ' % (user, host), Color.USERNAME_FG, bgcolor)
 
 add_user_host_segment()
 

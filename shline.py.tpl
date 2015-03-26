@@ -8,7 +8,7 @@ import sys
 def warn(msg):
     print '[powerline-bash] ', msg
 
-class Powerline:
+class Shline:
     symbols = {
         'compatible': {
             'branch': '',
@@ -42,10 +42,10 @@ class Powerline:
         mode, shell = args.mode, args.shell
         self.color_template = self.color_templates[shell]
         self.reset = self.color_template % '[0m'
-        self.branch = Powerline.symbols[mode]['branch']
-        self.lock = Powerline.symbols[mode]['lock']
-        self.network = Powerline.symbols[mode]['network']
-        self.separator = Powerline.symbols[mode]['separator']
+        self.branch = Shline.symbols[mode]['branch']
+        self.lock = Shline.symbols[mode]['lock']
+        self.network = Shline.symbols[mode]['network']
+        self.separator = Shline.symbols[mode]['separator']
         self.segments = []
 
     def color(self, prefix, code):
@@ -126,4 +126,4 @@ if __name__ == "__main__":
             help='Number of running jobs')
     args = arg_parser.parse_args()
 
-    powerline = Powerline(args, get_valid_cwd())
+    shline = Shline(args, get_valid_cwd())

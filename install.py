@@ -1,17 +1,18 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
+
 import os
 import stat
 
 try:
     import config
 except ImportError:
-    print('Created personal config.py for your customizations')
+    print 'Created personal config.py for your customizations'
     import shutil
     shutil.copyfile('config.py.dist', 'config.py')
     import config
 
-TEMPLATE_FILE = 'powerline-shell.py.template'
-OUTPUT_FILE = 'powerline-shell.py'
+TEMPLATE_FILE = 'shline.py.tpl'
+OUTPUT_FILE = 'shline.py'
 SEGMENTS_DIR = 'segments'
 THEMES_DIR = 'themes'
 
@@ -28,7 +29,7 @@ if __name__ == "__main__":
     source += load_source(os.path.join(THEMES_DIR, config.THEME + '.py'))
     for segment in config.SEGMENTS:
         source += load_source(os.path.join(SEGMENTS_DIR, segment + '.py'))
-    source += 'sys.stdout.write(powerline.draw())\n'
+    source += 'sys.stdout.write(shline.draw())\n'
 
     try:
         open(OUTPUT_FILE, 'w').write(source)
@@ -36,5 +37,5 @@ if __name__ == "__main__":
         os.chmod(OUTPUT_FILE, st.st_mode | stat.S_IEXEC)
         print OUTPUT_FILE, 'saved successfully'
     except IOError:
-        print 'ERROR: Could not write to powerline-shell.py. Make sure it is writable'
+        print 'ERROR: Could not write to shline.py. Make sure it is writable'
         exit(1)

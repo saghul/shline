@@ -1,7 +1,7 @@
-# This is the configuration file for your powerline-shell prompt
+# This is the configuration file for your shline prompt
 # Every time you make a change to this file, run install.py to apply changes
 #
-# For instructions on how to use the powerline-shell.py script, see the README
+# For instructions on how to use the shline.py script, see the README
 
 # Add, remove or rearrange these segments to customize what you see on the shell
 # prompt. Any segment you add must be present in the segments/ directory

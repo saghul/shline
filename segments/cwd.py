@@ -10,13 +10,13 @@ def get_short_path(cwd):
     return names
 
 def add_cwd_segment():
-    cwd = powerline.cwd or os.getenv('PWD')
+    cwd = shline.cwd or os.getenv('PWD')
     names = get_short_path(cwd.decode('utf-8'))
 
-    max_depth = powerline.args.cwd_max_depth
+    max_depth = shline.args.cwd_max_depth
     if len(names) > max_depth:
         names = names[:2] + [u'\u2026'] + names[2 - max_depth:]
 
-    powerline.append(' %s ' % os.path.join(*names), Color.CWD_FG, Color.PATH_BG)
+    shline.append(' %s ' % os.path.join(*names), Color.CWD_FG, Color.PATH_BG)
 
 add_cwd_segment()
