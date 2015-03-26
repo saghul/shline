@@ -1,13 +1,14 @@
 #!/usr/bin/env python2
 
 import os
+import shutil
 import stat
+import sys
 
 try:
     import config
 except ImportError:
     print 'Created personal config.py for your customizations'
-    import shutil
     shutil.copyfile('config.py.dist', 'config.py')
     import config
 
@@ -16,12 +17,15 @@ OUTPUT_FILE = 'shline.py'
 SEGMENTS_DIR = 'segments'
 THEMES_DIR = 'themes'
 
+
 def load_source(srcfile):
     try:
-        return ''.join(open(srcfile).readlines()) + '\n\n'
+        with open(srcfile) as f:
+            return f.read() + '\n\n'
     except IOError:
         print 'Could not open', srcfile
         return ''
+
 
 if __name__ == "__main__":
     source = load_source(TEMPLATE_FILE)
@@ -32,10 +36,12 @@ if __name__ == "__main__":
     source += 'sys.stdout.write(shline.draw())\n'
 
     try:
-        open(OUTPUT_FILE, 'w').write(source)
-        st = os.stat(OUTPUT_FILE)
-        os.chmod(OUTPUT_FILE, st.st_mode | stat.S_IEXEC)
+        with open(OUTPUT_FILE, 'w') as f:
+            f.write(source)
+            st = os.fstat(f.fileno())
+            os.fchmod(f.fileno(), st.st_mode | stat.S_IEXEC)
         print OUTPUT_FILE, 'saved successfully'
     except IOError:
         print 'ERROR: Could not write to shline.py. Make sure it is writable'
-        exit(1)
+        sys.exit(1)
+
