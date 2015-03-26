@@ -122,6 +122,8 @@ if __name__ == "__main__":
             help='Set this to your shell type', choices=['bash', 'zsh', 'bare'])
     arg_parser.add_argument('--prev-error', action='store', type=int,
             help='Error code returned by the last command')
+    arg_parser.add_argument('--jobs', action='store', type=int,
+            help='Number of running jobs')
     args = arg_parser.parse_args()
 
     powerline = Powerline(args, get_valid_cwd())

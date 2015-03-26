@@ -60,7 +60,7 @@ There are a few optional arguments which can be seen by running `powerline-shell
 Add the following to your `.bashrc`:
 
         function _update_ps1() {
-           export PS1="$(~/powerline-shell.py --prev-error $? 2> /dev/null)"
+           export PS1="$(~/powerline-shell.py --prev-error $? --jobs $(jobs -p | wc -l) 2> /dev/null)"
         }
 
         export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
