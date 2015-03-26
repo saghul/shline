@@ -120,7 +120,7 @@ if __name__ == "__main__":
             choices=['patched', 'compatible', 'flat'])
     arg_parser.add_argument('--shell', action='store', default='bash',
             help='Set this to your shell type', choices=['bash', 'zsh', 'bare'])
-    arg_parser.add_argument('prev_error', nargs='?', type=int, default=0,
+    arg_parser.add_argument('--prev-error', action='store', type=int,
             help='Error code returned by the last command')
     args = arg_parser.parse_args()
 
