@@ -1,6 +1,7 @@
 A simple powerline style prompt for my bash shell
 =================================================
 
+![shline-example](https://raw.github.com/saghul/shline/master/example.png)
 
 # Overview
 
