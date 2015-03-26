@@ -14,7 +14,7 @@ def add_svn_segment():
     output = p2.communicate()[0].strip()
     if len(output) > 0 and int(output) > 0:
         changes = output.strip()
-        powerline.append(' %s ' % changes, Color.SVN_CHANGES_FG, Color.SVN_CHANGES_BG)
+        powerline.append(' %s %s ' % (powerline.branch, changes), Color.SVN_CHANGES_FG, Color.SVN_CHANGES_BG)
 
 try:
     add_svn_segment()
