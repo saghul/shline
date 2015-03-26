@@ -10,12 +10,6 @@ def warn(msg):
 
 class Shline:
     symbols = {
-        'compatible': {
-            'branch': '',
-            'lock': 'RO',
-            'network': 'SSH',
-            'separator': u'\u276F'
-        },
         'patched': {
             'branch': u'\uE0A0',
             'lock': u'\uE0A2',
@@ -24,8 +18,8 @@ class Shline:
         },
         'flat': {
             'branch': '',
-            'lock': '',
-            'network': '',
+            'lock': 'RO',
+            'network': 'SSH',
             'separator': '',
         },
     }
@@ -111,7 +105,7 @@ if __name__ == "__main__":
             default=5, help='Maximum number of directories to show in path')
     arg_parser.add_argument('--mode', action='store', default='patched',
             help='The characters used to make separators between segments',
-            choices=['patched', 'compatible', 'flat'])
+            choices=['patched', 'flat'])
     arg_parser.add_argument('--prev-error', action='store', type=int,
             help='Error code returned by the last command')
     arg_parser.add_argument('--jobs', action='store', type=int,
