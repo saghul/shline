@@ -4,12 +4,14 @@ def add_hg_segment():
     import os
     import subprocess
 
+    env = {"LANG": "C", "HOME": os.getenv("HOME")}
+
     def get_hg_status():
         has_modified_files = False
         has_untracked_files = False
         has_missing_files = False
         try:
-            output = subprocess.check_output(['hg', 'status'])
+            output = subprocess.check_output(['hg', 'status'], env=env)
         except subprocess.CalledProcessError:
             pass
         else:
@@ -25,12 +27,14 @@ def add_hg_segment():
         return has_modified_files, has_untracked_files, has_missing_files
 
     try:
-        output = subprocess.check_output(['hg', 'branch'])
+        output = subprocess.check_output(['hg', 'branch'], env=env)
     except subprocess.CalledProcessError:
         return
+
     branch = output.rstrip()
     if not branch:
         return
+
     bg = Color.REPO_CLEAN_BG
     fg = Color.REPO_CLEAN_FG
     has_modified_files, has_untracked_files, has_missing_files = get_hg_status()
