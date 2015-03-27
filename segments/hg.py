@@ -8,21 +8,28 @@ def add_hg_segment():
         has_modified_files = False
         has_untracked_files = False
         has_missing_files = False
-        output = subprocess.Popen(['hg', 'status'],
-                stdout=subprocess.PIPE).communicate()[0]
-        for line in output.split('\n'):
-            if line == '':
-                continue
-            elif line[0] == '?':
-                has_untracked_files = True
-            elif line[0] == '!':
-                has_missing_files = True
-            else:
-                has_modified_files = True
+        try:
+            output = subprocess.check_output(['hg', 'status'])
+        except subprocess.CalledProcessError:
+            pass
+        else:
+            for line in output.split('\n'):
+                if line == '':
+                    continue
+                elif line[0] == '?':
+                    has_untracked_files = True
+                elif line[0] == '!':
+                    has_missing_files = True
+                else:
+                    has_modified_files = True
         return has_modified_files, has_untracked_files, has_missing_files
 
-    branch = os.popen('hg branch 2> /dev/null').read().rstrip()
-    if len(branch) == 0:
+    try:
+        output = subprocess.check_output(['hg', 'branch'])
+    except subprocess.CalledProcessError:
+        return
+    branch = output.rstrip()
+    if not branch:
         return
     bg = Color.REPO_CLEAN_BG
     fg = Color.REPO_CLEAN_FG
