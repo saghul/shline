@@ -1,6 +1,9 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
+# vim: set filetype=python :
+
+
 import argparse
 import os
 import sys
@@ -113,3 +116,4 @@ if __name__ == "__main__":
     args = arg_parser.parse_args()
 
     shline = Shline(args, get_valid_cwd())
+
