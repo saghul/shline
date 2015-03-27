@@ -1,15 +1,16 @@
-import os
-
-def get_short_path(cwd):
-    home = os.path.expanduser('~')
-    if cwd.startswith(home):
-        cwd = '~' + cwd[len(home):]
-    names = cwd.split(os.sep)
-    if not names[0]:
-        names[0] = '/'
-    return names
 
 def add_cwd_segment():
+    import os
+
+    def get_short_path(cwd):
+        home = os.path.expanduser('~')
+        if cwd.startswith(home):
+            cwd = '~' + cwd[len(home):]
+        names = cwd.split(os.sep)
+        if not names[0]:
+            names[0] = '/'
+        return names
+
     cwd = shline.cwd or os.getenv('PWD')
     names = get_short_path(cwd.decode('utf-8'))
 

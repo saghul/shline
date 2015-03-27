@@ -1,3 +1,4 @@
+
 def add_root_indicator_segment():
     bg = Color.CMD_PASSED_BG
     fg = Color.CMD_PASSED_FG

@@ -1,3 +1,4 @@
+
 def add_user_host_segment():
     import os
 
@@ -9,4 +10,3 @@ def add_user_host_segment():
     shline.append(' \\u@\\h ', Color.USERNAME_FG, bgcolor)
 
 add_user_host_segment()
-

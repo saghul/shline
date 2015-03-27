@@ -1,6 +1,7 @@
-import subprocess
 
 def add_svn_segment():
+    import subprocess
+
     is_svn = subprocess.Popen(['svn', 'status'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     is_svn_output = is_svn.communicate()[1].strip()
     if len(is_svn_output) != 0:
