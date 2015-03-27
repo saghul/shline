@@ -8,8 +8,6 @@ import argparse
 import os
 import sys
 
-def warn(msg):
-    print '[powerline-bash] ', msg
 
 class Shline:
     symbols = {
@@ -29,15 +27,39 @@ class Shline:
 
     color_template = '\\[\\e%s\\]'
 
-    def __init__(self, args, cwd):
+    def __init__(self, args):
         self.args = args
-        self.cwd = cwd
+        self.cwd = self._get_cwd()
         self.reset = self.color_template % '[0m'
         self.branch = Shline.symbols[args.mode]['branch']
         self.lock = Shline.symbols[args.mode]['lock']
         self.network = Shline.symbols[args.mode]['network']
         self.separator = Shline.symbols[args.mode]['separator']
         self.segments = []
+
+    def _get_cwd(self):
+        """ We check if the current working directory is valid or not. Typically
+            happens when you checkout a different branch on git that doesn't have
+            this directory.
+            We return the original cwd because the shell still considers that to be
+            the working directory, so returning our guess will confuse people
+        """
+        try:
+            cwd = os.getcwd()
+        except OSError:
+            cwd = os.getenv('PWD')  # This is where the OS thinks we are
+            parts = cwd.split(os.sep)
+            up = cwd
+            while parts and not os.path.exists(up):
+                parts.pop()
+                up = os.sep.join(parts)
+            try:
+                os.chdir(up)
+            except OSError:
+                sys.stderr.write("Your current directory is invalid.")
+                sys.exit(1)
+            sys.stderr.write("Your current directory is invalid. Lowest valid directory: %s" % up)
+        return cwd
 
     def color(self, prefix, code):
         if code is None:
@@ -77,30 +99,6 @@ class Shline:
             segment_separator if segment_separator != 'skip' else '',
         ))
 
-def get_valid_cwd():
-    """ We check if the current working directory is valid or not. Typically
-        happens when you checkout a different branch on git that doesn't have
-        this directory.
-        We return the original cwd because the shell still considers that to be
-        the working directory, so returning our guess will confuse people
-    """
-    try:
-        cwd = os.getcwd()
-    except:
-        cwd = os.getenv('PWD')  # This is where the OS thinks we are
-        parts = cwd.split(os.sep)
-        up = cwd
-        while parts and not os.path.exists(up):
-            parts.pop()
-            up = os.sep.join(parts)
-        try:
-            os.chdir(up)
-        except:
-            warn("Your current directory is invalid.")
-            sys.exit(1)
-        warn("Your current directory is invalid. Lowest valid directory: " + up)
-    return cwd
-
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
@@ -115,5 +113,5 @@ if __name__ == "__main__":
             help='Number of running jobs')
     args = arg_parser.parse_args()
 
-    shline = Shline(args, get_valid_cwd())
+    shline = Shline(args)
 
