@@ -1,3 +1,4 @@
+
 class DefaultColor:
     """
     This class should have the default colors for every segment.
@@ -10,12 +11,8 @@ class DefaultColor:
     HOSTNAME_FG = 250
     HOSTNAME_BG = 238
 
-    HOME_BG = 31  # blueish
-    HOME_FG = 15  # white
-    PATH_BG = 237  # dark grey
-    PATH_FG = 250  # light grey
     CWD_FG = 254  # nearly-white grey
-    SEPARATOR_FG = 244
+    CWD_BG = 237  # dark grey
 
     READONLY_BG = 124
     READONLY_FG = 254
@@ -38,6 +35,7 @@ class DefaultColor:
 
     VIRTUAL_ENV_BG = 35  # a mid-tone green
     VIRTUAL_ENV_FG = 00
+
 
 class Color(DefaultColor):
     """

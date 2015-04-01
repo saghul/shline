@@ -18,6 +18,6 @@ def add_cwd_segment():
     if len(names) > max_depth:
         names = names[:2] + [u'\u2026'] + names[2 - max_depth:]
 
-    shline.append(' %s ' % os.path.join(*names), Color.CWD_FG, Color.PATH_BG)
+    shline.append(' %s ' % os.path.join(*names), Color.CWD_FG, Color.CWD_BG)
 
 add_cwd_segment()

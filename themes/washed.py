@@ -6,10 +6,8 @@ class Color(DefaultColor):
     HOSTNAME_FG = 8
     HOSTNAME_BG = 7
 
-    PATH_BG = 15
-    PATH_FG = 8
     CWD_FG = 8
-    SEPARATOR_FG = 251
+    CWD_BG = 15
 
     READONLY_BG = 209
     READONLY_FG = 15
