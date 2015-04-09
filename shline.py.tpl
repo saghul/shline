@@ -9,7 +9,7 @@ import os
 import sys
 
 
-class Shline:
+class Shline(object):
     symbols = {
         'patched': {
             'branch': u'\uE0A0',
