@@ -12,7 +12,7 @@ def add_git_segment():
         env = {"LANG": "C", "HOME": os.getenv("HOME")}
         try:
             output = subprocess.check_output(['git', 'status', '--ignore-submodules'], env=env)
-        except subprocess.CalledProcessError:
+        except subprocess.CalledProcessError, OSError:
             pass
         else:
             for line in output.split('\n'):

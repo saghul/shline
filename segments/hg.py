@@ -28,7 +28,7 @@ def add_hg_segment():
 
     try:
         output = subprocess.check_output(['hg', 'branch'], env=env)
-    except subprocess.CalledProcessError:
+    except subprocess.CalledProcessError, OSError:
         return
 
     branch = output.rstrip()
