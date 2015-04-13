@@ -17,7 +17,7 @@ shline is a subset of powerline-shell. It does have some additions though.
 
 # Segments
 
-* Shows some important details about the git/hg branch:
+* Shows some important details about the git/hg branch and darcs status:
     * Displays the current branch which changes background color when the branch is dirty
     * A '+' appears when untracked files are present
     * When the local branch differs from the remote, the difference in number of commits is
