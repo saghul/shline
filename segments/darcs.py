@@ -1,5 +1,4 @@
 
-
 def add_darcs_segment():
     import os
     import re
@@ -27,32 +26,19 @@ def add_darcs_segment():
         return has_modified_files, has_missing_files
 
     try:
-        output = subprocess.check_output(['darcs', 'show', 'repo'], env=env)
+        subprocess.check_output(['darcs', 'show', 'repo'], env=env)
     except (subprocess.CalledProcessError, OSError):
-        return
-
-    repo_info = {}
-    for line in output.split('\n'):
-        if line == '':
-            continue
-        name, var = line.partition(": ")[::2]
-        repo_info[name.strip()] = var
-
-    if repo_info['Type'] != 'darcs':
         return
 
     bg = Color.REPO_CLEAN_BG
     fg = Color.REPO_CLEAN_FG
     has_modified_files, has_missing_files = get_darcs_status()
-    repo_type = "%s(%s)" % (repo_info['Type'], repo_info['Format'])
     if has_modified_files or has_missing_files:
         bg = Color.REPO_DIRTY_BG
         fg = Color.REPO_DIRTY_FG
         extra = ''
         if has_missing_files:
             extra += '+'
-        repo_type += (' ' + extra if extra != '' else '')
-    return shline.append(' %s %s ' % (shline.branch, repo_type), fg, bg)
+    return shline.append(' %s %s ' % (shline.branch, extra), fg, bg)
 
 add_darcs_segment()
-
