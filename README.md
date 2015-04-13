@@ -66,10 +66,13 @@ Add the following to your `.bashrc`:
         function _update_ps1() {
             local PREV_ERROR=$?
             local JOBS=$(jobs -p | wc -l)
-            export PS1="$(~/.shline/shline.py --prev-error $PREV_ERROR --jobs $JOBS 2> /dev/null)"
+            export PS1="$(python ~/.shline/shline.py --prev-error $PREV_ERROR --jobs $JOBS 2> /dev/null)"
         }
 
         export PROMPT_COMMAND="_update_ps1"
+
+
+Note: Python 2 is needed, shline doesn't work with Python 3 yet.
 
 
 # Customization

@@ -3,7 +3,6 @@
 import errno
 import os
 import shutil
-import stat
 import sys
 
 try:
@@ -48,8 +47,6 @@ if __name__ == "__main__":
         makedirs(os.path.dirname(OUTPUT_FILE))
         with open(OUTPUT_FILE, 'w') as f:
             f.write(source)
-            st = os.fstat(f.fileno())
-            os.fchmod(f.fileno(), st.st_mode | stat.S_IEXEC)
         print OUTPUT_FILE, 'saved successfully'
     except IOError:
         print 'ERROR: Could not write to shline.py. Make sure it is writable'

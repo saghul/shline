@@ -1,6 +1,4 @@
-#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-
 # vim: set filetype=python :
 
 
