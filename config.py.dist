@@ -36,6 +36,9 @@ SEGMENTS = [
 # Show the current mercurial branch and status
     'hg',
 
+# Show the current darcs status
+    'darcs',
+
 # Show number of running jobs
     'jobs',
 
