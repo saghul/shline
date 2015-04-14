@@ -32,11 +32,11 @@ def add_darcs_segment():
 
     bg = Color.REPO_CLEAN_BG
     fg = Color.REPO_CLEAN_FG
+    extra = ''
     has_modified_files, has_missing_files = get_darcs_status()
     if has_modified_files or has_missing_files:
         bg = Color.REPO_DIRTY_BG
         fg = Color.REPO_DIRTY_FG
-        extra = ''
         if has_missing_files:
             extra += '+'
     return shline.append(' %s %s ' % (shline.branch, extra), fg, bg)
