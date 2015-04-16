@@ -66,7 +66,7 @@ Add the following to your `.bashrc`:
         function _update_ps1() {
             local PREV_ERROR=$?
             local JOBS=$(jobs -p | wc -l)
-            export PS1="$(python ~/.shline/shline.py --prev-error $PREV_ERROR --jobs $JOBS 2> /dev/null)"
+            export PS1="$(python2.7 ~/.shline/shline.py --prev-error $PREV_ERROR --jobs $JOBS 2> /dev/null)"
         }
 
         export PROMPT_COMMAND="_update_ps1"
