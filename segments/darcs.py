@@ -10,7 +10,13 @@ def add_darcs_segment():
         has_modified_files = False
         has_missing_files = False
         try:
-            output = subprocess.check_output(['darcs', 'whatsnew', '-s', '--look-for-adds'], env=env)
+            output = subprocess.check_output(['darcs',
+                                              'whatsnew',
+                                              '--summary',
+                                              '--look-for-adds',
+                                              '--look-for-replaces',
+                                              '--look-for-moves'],
+                                             env=env)
         except subprocess.CalledProcessError:
             pass
         else:
