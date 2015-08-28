@@ -26,7 +26,7 @@ class Shline(object):
     color_template = '\\[\\e%s\\]'
 
     def __init__(self, args):
-        if os.getenv('SSH_CLIENT'):
+        if os.getenv('SSH_CLIENT') or os.getenv('SSH_CONNECTION'):
             args.mode = 'flat'
         self.args = args
         self.cwd = self._get_cwd()
