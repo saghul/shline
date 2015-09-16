@@ -4,12 +4,12 @@ def add_nvm_segment():
     import subprocess
 
     try:
-        output = subprocess.check_output(['bash', '-c', '. .nvm/nvm.sh; nvm current'])
+        output = subprocess.check_output(['bash', '-c', '. ~/.nvm/nvm.sh; nvm current'])
     except (OSError, subprocess.CalledProcessError):
         return
 
     version = output.rstrip()
-    if version == 'system':
+    if version in ('system', 'none'):
         return
 
     shline.append(' node: %s ' % version, Color.NVM_FG, Color.NVM_BG)
