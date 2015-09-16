@@ -36,6 +36,9 @@ class DefaultColor:
     VIRTUAL_ENV_BG = 35  # a mid-tone green
     VIRTUAL_ENV_FG = 00
 
+    NVM_BG = 28
+    NVM_FG = 255
+
 
 class Color(DefaultColor):
     """

@@ -10,6 +10,9 @@ SEGMENTS = [
 # Show current virtual environment (see http://www.virtualenv.org/)
     'virtual_env',
 
+# Show current node version (if using NVM and the version is not 'system')
+    'nvm',
+
 # Show the current user's username as in ordinary prompts
     'username',
 
