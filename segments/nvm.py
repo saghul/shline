@@ -12,6 +12,6 @@ def add_nvm_segment():
     if version in ('system', 'none'):
         return
 
-    shline.append(' node: %s ' % version, Color.NVM_FG, Color.NVM_BG)
+    shline.append(u' \u2B22 %s ' % version, Color.NVM_FG, Color.NVM_BG)
 
 add_nvm_segment()
