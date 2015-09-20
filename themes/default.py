@@ -39,6 +39,9 @@ class DefaultColor:
     NVM_BG = 28
     NVM_FG = 255
 
+    SHLVL_BG = 130
+    SHLVL_FG = 254
+
 
 class Color(DefaultColor):
     """

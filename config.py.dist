@@ -22,6 +22,9 @@ SEGMENTS = [
 # Show 'username@hostname'
 #   'user_host',
 
+# Show the shell level (unless inside Tmux)
+#   'shlvl',
+
 # Show a padlock when ssh-ing from another machine
     'ssh',
 
